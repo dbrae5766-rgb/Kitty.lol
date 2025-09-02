@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitty.lol - The Ultimate Cat App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0b0d;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            background: #1a1b1e;
+            border-radius: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 26px;
+        }
+        
+        .logo svg {
+            width: 70px;
+            height: 70px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #9ca3af;
+            margin-bottom: 3rem;
+        }
+
+        .download-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            margin: 6rem 0;
+        }
+
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .comparison-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #60a5fa;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-subtitle {
+            color: #9ca3af;
+            font-size: 1.1rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-card {
+            background: #1a1b1e;
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .comparison-card.kitty {
+            border: 1px solid #3b82f6;
+        }
+
+        .comparison-card.others {
+            border: 1px solid #374151;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+        }
+
+        .kitty-icon {
+            background: #3b82f6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .others-icon {
+            background: #374151;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #2d3748;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .check-icon {
+            color: #10b981;
+        }
+
+        .x-icon {
+            color: #ef4444;
+        }
+
+        .feature-text {
+            color: #d1d5db;
+        }
+
+        /* Features Grid Section */
+        .features-section {
+            margin: 6rem 0;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #9ca3af;
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: #1a1b1e;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid #2d3748;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .feature-card-icon {
+            width: 48px;
+            height: 48px;
+            background: #3b82f6;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card-desc {
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .comparison-title {
+                font-size: 2rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/dbrae5766-rgb/Kitty.LOL_Monaco/main/kittylol.png" alt="kitty.lol logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 26px;">
+            </div>
+            <h1>kitty.lol</h1>
+            <p class="tagline">The ultimate cat companion app, without the downsides.</p>
+            
+            <div class="download-section">
+                <div class="download-buttons">
+                    <a href="https://gofile.io/d/nSGfKz" class="download-btn" target="_blank">
+                        💻 Download for Windows
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Section -->
+        <div class="comparison-section">
+            <div class="comparison-header">
+                <div class="comparison-badge">COMPARISON</div>
+                <h2 class="comparison-title">Why we're the best</h2>
+                <p class="comparison-subtitle">The ultimate cat app, without the downsides.</p>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card kitty">
+                    <div class="card-header">
+                        <div class="card-icon kitty-icon">
+                            🐱
+                        </div>
+                        <div class="card-title">kitty.lol</div>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-icon check-icon">✓</div>
+                            <div class="feature-text">Free</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon check-icon">✓</div>
+                            <div class="feature-text">Quick support</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon check-icon">✓</div>
+                            <div class="feature-text">Easy to Use</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon check-icon">✓</div>
+                            <div class="feature-text">Supports 99.99% of Cats</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon check-icon">✓</div>
+                            <div class="feature-text">Instant Updates</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card others">
+                    <div class="card-header">
+                        <div class="card-icon others-icon">
+                            🐕
+                        </div>
+                        <div class="card-title">Others</div>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-icon x-icon">✗</div>
+                            <div class="feature-text">Paid</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon x-icon">✗</div>
+                            <div class="feature-text">Bad, slow support</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon x-icon">✗</div>
+                            <div class="feature-text">Complicated install process</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon x-icon">✗</div>
+                            <div class="feature-text">Doesn't support most cats</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon x-icon">✗</div>
+                            <div class="feature-text">Slow Updates</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <div class="features-header">Every reason to choose kitty.lol, none to doubt it.</div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon">💰</div>
+                    <h3 class="feature-card-title">100% Free</h3>
+                    <p class="feature-card-desc">Enjoy premium-level cat features at no cost — kitty.lol is free for all.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-icon">📈</div>
+                    <h3 class="feature-card-title">Always Improving</h3>
+                    <p class="feature-card-desc">kitty.lol is here for the long run and just keeps getting better.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-icon">⚡</div>
+                    <h3 class="feature-card-title">Fast Updates</h3>
+                    <p class="feature-card-desc">kitty.lol is always up to date, so you never have to wait.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-icon">🎨</div>
+                    <h3 class="feature-card-title">Customizable</h3>
+                    <p class="feature-card-desc">Fully customizable, giving you complete control over your cats.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-icon">🎧</div>
+                    <h3 class="feature-card-title">Premium Support</h3>
+                    <p class="feature-card-desc">Need help? Enjoy premium support at no cost.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-card-icon">✅</div>
+                    <h3 class="feature-card-title">100% Purr-fect</h3>
+                    <p class="feature-card-desc">Despite being completely free, kitty.lol offers 100% satisfaction & meows.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add click interactions
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Let the link work normally to gofile.io
+                console.log('Redirecting to download...');
+            });
+        });
+
+        // Add hover effects to feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = '#1f2937';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = '#1a1b1e';
+            });
+        });
+    </script>
+</body>
+</html>
